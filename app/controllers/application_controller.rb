@@ -1,4 +1,5 @@
 class ApplicationController < Sinatra::Base
+
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -7,7 +8,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    "Welcome patients"
+    "Welcome patients."
   end
 
 end

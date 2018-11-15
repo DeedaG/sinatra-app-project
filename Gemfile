@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-git_source(:github) {|sinatra-app-project| "git@github.com:DeedaG/sinatra-app-project.git" }
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 # gem "rails"
 gem 'sinatra'
@@ -12,4 +12,7 @@ gem 'rake'
 gem 'pry'
 gem 'sinatra-activerecord'
 gem 'require_all'
+gem 'thin'
 gem 'shotgun'
+gem 'bcrypt'
+gem "tux"
