@@ -9,4 +9,9 @@ class SessionsController < ApplicationController
     redirect '/patients'
   end
 
+  get '/logout' do
+    logout!
+    redirect '/patients'
+  end
+
 end
