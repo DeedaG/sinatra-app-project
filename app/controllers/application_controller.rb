@@ -15,9 +15,9 @@ helpers do
   end
 
   def login(email, password)
-    user = User.find_by(:email => email)
-    if user && user.authenticate(password)
-      session[:email] = email
+    dentist = Dentist.find_by(:email => email)
+    if dentist && dentist.authenticate(password)
+      session[:email] = dentist.email
     else
       redirect '/login'
     end
