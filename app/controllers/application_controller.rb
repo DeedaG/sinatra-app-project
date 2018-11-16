@@ -18,8 +18,9 @@ helpers do
     session[:email] = email
   end
 
-  def logout
+  def logout!
     session.clear
+    redirect '/patients'
   end
  end
 end
