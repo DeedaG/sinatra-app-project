@@ -2,6 +2,9 @@ class PatientsController < ApplicationController
 
   get '/patients' do
     "a list of patients"
+    @dentist = Dentist.find_by(session[:dentist_id])
+    @patients = Patient.all
+    erb :'/patients/index'
   end
 
   get '/patients/new' do
