@@ -1,7 +1,6 @@
 class PatientsController < ApplicationController
 
   get '/patients' do
-    "a list of patients"
     @dentist = Dentist.find_by(session[:dentist_id])
     @patients = Patient.all
     erb :'/patients/index'
@@ -11,7 +10,7 @@ class PatientsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      "another form"
+      erb :'/patients/new'
     end
   end
 

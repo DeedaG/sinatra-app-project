@@ -8,7 +8,11 @@ class ApplicationController < Sinatra::Base
   end
 
 get '/' do
-  "Welcome to the practice database."
+  if !logged_in?
+    redirect '/signup'
+  else
+  redirect '/login'
+  end
 end
 
 helpers do
