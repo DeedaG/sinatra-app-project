@@ -14,8 +14,13 @@ helpers do
     !!session[:email]
   end
 
-  def login(email)
-    session[:email] = email
+  def login(email, password)
+    user = User.find_by(:email => email)
+    if user && user.authenticate(password)
+      session[:email] = email
+    else
+      redirect '/login'
+    end
   end
 
   def logout!
