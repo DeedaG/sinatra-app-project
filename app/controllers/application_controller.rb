@@ -11,7 +11,11 @@ class ApplicationController < Sinatra::Base
 helpers do
 
   def logged_in?
-    !!session[:email]
+    !!current_dentist
+  end
+
+  def current_dentist
+    @current_dentist ||= Dentist.find_by(:email => session[:email]) if session[:email]
   end
 
   def login(email, password)
