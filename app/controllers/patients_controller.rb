@@ -22,7 +22,7 @@ class PatientsController < ApplicationController
       @patient.email = params[:email]
       @patient.history = params[:history]
       if @patient.save
-        erb :'patients/show'
+        erb :'/patients/show'
       else
         redirect '/patients/new'
       end
@@ -31,17 +31,30 @@ class PatientsController < ApplicationController
     end
   end
 
-
   get '/patients/:id/edit' do
     if !logged_in?
       redirect '/login'
     else
-      if patient = current_dentist.patients.find_by(params[:id])
-        "An edit patient form #{current_dentist.id} is editing #{patient.id}"
+      if patient.dentist_id = current_dentist.patients.find_by(params[:id])
+        erb :'/patients/edit'
       else
         redirect '/patients'
       end
     end
   end
+
+  patch '/patients/:id' do
+    #if logged_in?
+    #     @patient = Patient.find_by_id(params[:id])
+    #
+    #   #   if @patient.save
+    #   #    redirect "/patients/#{params[:id]}"
+    #   #  else
+    #   #    redirect "/patients/#{params[:id]}/edit"
+    #   #  end
+    # else
+    #   redirect '/login'
+    # end
+   end
 
 end
