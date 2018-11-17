@@ -2,22 +2,22 @@
 
 <form action="/patients" method="POST">
   <p>
-    <label for="name">Patient Name:</label>
-    <input type="text" name="name" id="name" />
+    Patient Name: <input type="text" name="name"/>
 
-    <label for="insurance">Insured?</label>
-    <input type="text" name="insurance" id="insurance" />
+    Insured? <input type="text" name="insurance"/>
 
-    <label for="email">Patient Email:</label>
-    <input type="text" name="email" id="email" />
+    Patient Email: <input type="text" name="email"/>
 
-    <label for="history">Previous procedures:</label>
-    <input type="text" name="history" id="history" />
-  </p>
-
-  <input type="submit" />
+    Previous procedures: <input type="text" name="history"/>
+</p>
+  <input type="submit" value="submit"></input>
 
 </form>
+
+
+
+
+
 
 <h5><a href='/patients/:id/delete'>Delete patient</a></h5>
 <h5><a href='/patients/:id/edit'>Edit patient</a></h5>

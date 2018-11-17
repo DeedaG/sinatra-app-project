@@ -36,7 +36,7 @@ helpers do
 
   def logout!
     session.clear
-    redirect '/patients'
+    redirect '/'
   end
  end
 end

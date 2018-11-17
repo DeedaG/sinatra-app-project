@@ -1,0 +1,8 @@
+<h1> <%= @patient.name %></h1>
+ <%= @patient.insurance %><br>
+    <%= @patient.email %><br>
+    <%= @patient.history %>
+
+<h5><a href='/sessions/logout'>Logout</a></h5>
+<h5><a href='/patients/:id/edit'>Edit Patient</a></h5>
+<h5><a href='/patients/:id'>Delete Patient</a></h5>

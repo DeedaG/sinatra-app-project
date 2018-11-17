@@ -14,6 +14,24 @@ class PatientsController < ApplicationController
     end
   end
 
+  post '/patients' do
+    if logged_in?
+      @patient = Patient.new
+      @patient.name = params[:name]
+      @patient.insurance = params[:insurance]
+      @patient.email = params[:email]
+      @patient.history = params[:history]
+      if @patient.save
+        erb :'patients/show'
+      else
+        redirect '/patients/new'
+      end
+    else
+      redirect '/login'
+    end
+  end
+
+
   get '/patients/:id/edit' do
     if !logged_in?
       redirect '/login'
