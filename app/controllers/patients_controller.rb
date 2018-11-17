@@ -44,17 +44,18 @@ class PatientsController < ApplicationController
   end
 
   patch '/patients/:id' do
-    #if logged_in?
-    #     @patient = Patient.find_by_id(params[:id])
-    #
-    #   #   if @patient.save
-    #   #    redirect "/patients/#{params[:id]}"
-    #   #  else
-    #   #    redirect "/patients/#{params[:id]}/edit"
-    #   #  end
-    # else
-    #   redirect '/login'
-    # end
-   end
+    if logged_in?
+      if params[:name] == ""
+        redirect "/patients/#{params[:id]}/edit"
+      else
+      @patient = Patient.find_by_id(params[:id])
+      @patient.name = params[:name]
+      @patient.save
+        redirect "/patients/#{params[:id]}"
+      end
+    else
+      redirect '/login'
+    end
+  end
 
 end
