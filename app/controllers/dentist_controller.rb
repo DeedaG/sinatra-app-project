@@ -1,11 +1,7 @@
 class DentistController < ApplicationController
 
   get '/signup' do
-  #  if logged_in?
-    #  redirect '/patients'
-    # else
-       erb :'/dentists/new'
-    # end
+     erb :'/dentists/new'    
   end
 
   post '/dentists' do
@@ -13,7 +9,7 @@ class DentistController < ApplicationController
     @dentist.email = params[:email]
     @dentist.password = params[:password]
     if @dentist.save
-      redirect '/login'
+      redirect '/patients'
     else
       erb :'dentists/new'
     end

@@ -32,15 +32,17 @@ class PatientsController < ApplicationController
   end
 
   get '/patients/:id/edit' do
-    # if !logged_in?
-    #   redirect '/login'
-    # else
-    #   #if patient = current_dentist.patients.find_by(params[:id])
-    #     erb :'/patients/edit'
-    # #  else
-    # #    redirect '/patients'
-    # #  end
-    # end
+     if logged_in?
+       #redirect '/login'
+     #else
+        @patient = Patient.find_by_id(params[:id])
+        #patient = current_dentist.patients.find_by(params[:id])
+        @patient.name = params[:name]
+         erb :'/patients/edit'
+       else
+         redirect '/login'
+      end
+     #end
   end
 
   patch '/patients/:id' do
