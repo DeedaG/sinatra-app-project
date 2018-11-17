@@ -1,4 +1,4 @@
-<h1>Edit Patient: <%=@patient.name%></h1>
+<h1>Edit Patient: <%=patient.name%></h1>
 
 <form action="/patients/<%= @patient.id %>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="PATCH">

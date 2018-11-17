@@ -1,11 +1,11 @@
 class DentistController < ApplicationController
 
   get '/signup' do
-    if logged_in?
-      redirect '/patients'
-    else
-      erb :'/dentists/new'
-    end
+  #  if logged_in?
+    #  redirect '/patients'
+    # else
+       erb :'/dentists/new'
+    # end
   end
 
   post '/dentists' do
