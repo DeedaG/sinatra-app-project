@@ -6,10 +6,9 @@
 
  <form action="/patients/<%= @patient.id %>/delete" method="post">
    <input id="hidden" type="hidden" name="_method" value="DELETE">
-   <button type="submit" value="delete">Delete Patient</button>
+   <button type="submit" value="delete">delete patient</button>
 </form>
 
 
 <h5><a href='/logout'>Logout</a></h5>
 <h5><a href='/patients/:id/edit'>Edit Patient</a></h5>
-<h5><a href='/patients/:id'>Delete Patient</a></h5>
