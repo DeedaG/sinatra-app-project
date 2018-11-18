@@ -8,11 +8,7 @@ class ApplicationController < Sinatra::Base
   end
 
 get '/' do
-  if !logged_in?
-    redirect '/signup'
-  else
-  redirect '/login'
-  end
+  redirect '/signup'
 end
 
 helpers do

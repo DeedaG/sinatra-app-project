@@ -1,7 +1,7 @@
 class DentistController < ApplicationController
 
   get '/signup' do
-     erb :'/dentists/new'    
+     erb :'/dentists/new'
   end
 
   post '/dentists' do

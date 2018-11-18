@@ -1,8 +1,13 @@
-<h1> Welcome, <%= @dentist.name %></h1>
+<h1> Hello, your patients' records are below.</h1>
+<h3>Please scroll to the bottom of this page to edit, delete, or create new records.</h3>
  <% @patients.each do |patient| %>
-    <%= patient.name %><br>
+    <h2><%= patient.name %>, id =<%= patient.id%></h2>
+    <h4>Insurance: </h4><%= patient.insurance %>
+    <h4>Email: </h4><%= patient.email %>
+    <h4>History: </h4><%= patient.history %><br></br>
     <% end %>
-<h2> Search patients</h2>
-<h5><a href='/logout'>Logout</a></h5>
-<h5><a href='/patients/:id'>Patient Detail</a></h5>
+
+<h5><a href='/patients/:id/edit'>Edit Patient</a></h5>
 <h5><a href='/patients/new'>New Patient</a></h5>
+<h5><a href='/patients/:id'>Delete Patient</a></h5>
+<h5><a href='/logout'>Logout</a></h5>

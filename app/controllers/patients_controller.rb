@@ -1,12 +1,12 @@
 class PatientsController < ApplicationController
 
-  get '/patients' do
-    @dentist = Dentist.find_by(session[:dentist_id])
-    @patients = Patient.all
-    erb :'/patients/index'
+  get '/patients' do  #displays all patients in database
+      @dentist = Dentist.find_by(session[:dentist_id])
+      @patients = Patient.all
+      erb :'/patients/index'
   end
 
-  get '/patients/new' do
+  get '/patients/new' do  #creates a new patient
     if !logged_in?
       redirect '/login'
     else
@@ -14,7 +14,7 @@ class PatientsController < ApplicationController
     end
   end
 
-  post '/patients' do
+  post '/patients' do  #displays patient details entered in params
     if logged_in?
       @patient = Patient.new
       @patient.name = params[:name]
@@ -31,18 +31,36 @@ class PatientsController < ApplicationController
     end
   end
 
+  get '/patients/:id' do
+    if logged_in?
+    @patient = Patient.find_by_id(params[:id])
+      erb :'/patients/show'
+    else
+      redirect '/login'
+    end
+  end
+
+  delete '/patients/:id/delete' do
+    @patient = Patient.find_by_id(params[:id])
+    if session[:dentist_id] == @patient.dentist_id
+      @patient.delete
+      redirect '/patients'
+    else
+      redirect to "/patients/#{params[:id]}"
+    end
+  end
+
   get '/patients/:id/edit' do
-     if logged_in?
-       #redirect '/login'
-     #else
-        @patient = Patient.find_by_id(params[:id])
-        #patient = current_dentist.patients.find_by(params[:id])
-        @patient.name = params[:name]
+     if !logged_in?
+       redirect '/login'
+     else
+       if patient = current_dentist.patients.find_by(params[:dentist_id])
+         #@patient.name = params[:name]
          erb :'/patients/edit'
        else
-         redirect '/login'
-      end
-     #end
+         redirect '/patients'
+       end
+     end
   end
 
   patch '/patients/:id' do
@@ -55,15 +73,6 @@ class PatientsController < ApplicationController
       @patient.save
         redirect "/patients/#{params[:id]}"
       end
-    else
-      redirect '/login'
-    end
-  end
-
-  get '/patients/:id' do
-    if logged_in?
-    @patient = Patient.find_by_id(params[:id])
-      erb :'/patients/show'
     else
       redirect '/login'
     end

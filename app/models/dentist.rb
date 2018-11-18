@@ -4,4 +4,6 @@ class Dentist < ActiveRecord::Base
 
   has_many :patients
 
+  has_many :assistants
+
 end
