@@ -1,6 +1,6 @@
-<h1>Edit Patient: </h1>
+<h1>Edit Patient: <%= @patient.name%></h1>
 
-<form action="/patients/<%=patient.id%>" method="POST">
+<form action="/patients/<%=@patient.id%>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
 
   <label for="insurance">Insured?</label>
