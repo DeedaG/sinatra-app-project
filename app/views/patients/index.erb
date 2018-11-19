@@ -2,12 +2,10 @@
 <h3>Please scroll to the bottom of this page to edit, delete, or create new records.</h3>
  <% @patients.each do |patient| %>
  <p><h2><%= patient.name %></h2>
-    <h4>Insurance: </h4><%= patient.insurance %>
-    <h4>Email: </h4><%= patient.email %>
-    <h4>History: </h4><%= patient.history %><br>
+
     <a href="/patients/<%= patient.id %>"> View patient here</a>
     <% end %></p>
-    
+
 
 <h5><a href='/patients/new'>New Patient</a></h5>
 <h5><a href='/logout'>Logout</a></h5>

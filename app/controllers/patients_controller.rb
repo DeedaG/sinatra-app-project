@@ -21,13 +21,10 @@ class PatientsController < ApplicationController
       @patient.insurance = params[:insurance]
       @patient.email = params[:email]
       @patient.history = params[:history]
-      if @patient.save
-        erb :'/patients/show'
+      @patient.save
+        redirect "/patients/#{@patient.id}"
       else
-        redirect '/patients/new'
-      end
-    else
-      redirect '/login'
+        redirect '/login'
     end
   end
 
