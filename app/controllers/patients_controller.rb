@@ -15,16 +15,18 @@ class PatientsController < ApplicationController
   end
 
   post '/patients' do  #displays patient details entered in params
-    if logged_in?
-      @patient = Patient.new
+    if !logged_in?
+      redirect '/login'
+    else
+      @patient = Patient.create(params[:patient])
+      @patient.dentist = Dentist.find_or_create_by(params[:dentist])
+      #@patient = Patient.new
       @patient.name = params[:name]
       @patient.insurance = params[:insurance]
       @patient.email = params[:email]
       @patient.history = params[:history]
       @patient.save
-        redirect "/patients/#{@patient.id}"
-      else
-        redirect '/login'
+        redirect "/patients"
     end
   end
 
