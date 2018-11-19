@@ -1,0 +1,14 @@
+<h1> <%= @assistant.name %></h1>
+ Position: <%= @assistant.position %><br>
+ Skills: <%= @assistant.skills %><br>
+
+
+<a href="/assistants/<%= @assistant.id %>/edit">edit assistant</a>
+
+ <form action="/assistants/<%= @assistant.id %>/delete" method="post">
+   <input id="hidden" type="hidden" name="_method" value="DELETE">
+   <input type="submit" value="delete"></input>
+</form>
+
+<h5><a href='/assistants'>Assistant Directory</a></h5>
+<h5><a href='/logout'>Logout</a></h5>

@@ -1,0 +1,13 @@
+<h1> Hello, your assistants' records are below.</h1>
+<h3>Please scroll to the bottom of this page to edit, delete, or create new records.</h3>
+ <% @assistants.each do |assistant| %>
+ <p><h2><%= assistant.name %></h2>
+
+    <a href="/assistants/<%= assistant.id %>"> View assistant here</a>
+    <% end %></p>
+
+    <br></br>
+
+<h4><a href='/assistants/new'>Create New Assistant</a></h4>
+<h4><a href='/patients'>Patient Directory</a></h4>
+<h4><a href='/logout'>Logout</a></h4>

@@ -58,6 +58,7 @@ class PatientsController < ApplicationController
       @patient = Patient.find_by_id(params[:id])
       @patient.name = params[:name]
       @patient.insurance = params[:insurance]
+      @patient.email = params[:email]
       @patient.history = params[:history]
       @patient.save
         redirect "/patients/#{params[:id]}"

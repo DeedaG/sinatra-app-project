@@ -7,6 +7,7 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 
 use Rack::MethodOverride
+use AssistantsController
 use SessionsController
 use DentistController
 use PatientsController
