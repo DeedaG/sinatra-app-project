@@ -1,14 +1,14 @@
 <h1> <%= @patient.name %></h1>
  Insured? <%= @patient.insurance %><br>
  Email: <%= @patient.email %><br>
- Procedures: <%= @patient.history %>
+ Procedures: <%= @patient.history %><br>
 
+<a href="/patients/<%= @patient.id %>/edit">edit patient</a>
 
  <form action="/patients/<%= @patient.id %>/delete" method="post">
    <input id="hidden" type="hidden" name="_method" value="DELETE">
-   <button type="submit" value="delete">delete patient</button>
+   <input type="submit" value="delete"></input>
 </form>
 
-
+<h5><a href='/patients'>Patient Directory</a></h5>
 <h5><a href='/logout'>Logout</a></h5>
-<h5><a href='/patients/:id/edit'>Edit Patient</a></h5>

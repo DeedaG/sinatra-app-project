@@ -35,7 +35,8 @@ class PatientsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-    @patient = current_dentist.patients.find_by(params[:id])
+      @patient = Patient.find_by_id(params[:id])
+    #@patient = current_dentist.patients.find_by_id(params[:id])
       erb :'/patients/show'
     end
   end
@@ -44,8 +45,8 @@ class PatientsController < ApplicationController
      if !logged_in?
        redirect '/login'
      else
-       @patient = current_dentist.patients.find_by(params[:id])
-       @patient.name = params[:name]
+       #@patient = current_dentist.patients.find_by(params[:id])
+       @patient = Patient.find_by_id(params[:id])
         erb :'/patients/edit'
      end
   end
@@ -57,6 +58,8 @@ class PatientsController < ApplicationController
       else
       @patient = Patient.find_by_id(params[:id])
       @patient.name = params[:name]
+      @patient.insurance = params[:insurance]
+      @patient.history = params[:history]
       @patient.save
         redirect "/patients/#{params[:id]}"
       end
@@ -67,11 +70,11 @@ class PatientsController < ApplicationController
 
   delete '/patients/:id/delete' do
     @patient = Patient.find_by_id(params[:id])
-    if @patient = current_dentist.patients.find_by(params[:id])
+    #if @patient = current_dentist.patients.find_by(params[:id])
       @patient.delete
       redirect '/patients'
-    else
-      redirect to "/patients/#{params[:id]}"
-    end
+    #else
+    #  redirect to "/patients/#{params[:id]}"
+    #end
   end
 end
