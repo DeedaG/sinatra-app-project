@@ -13,3 +13,4 @@ git@github.com:DeedaG/sinatra-app-project.git.  Typing cd sinatra-app-project in
 
 
 ## Link to license for code
+https://opensource.org/licenses/MIT

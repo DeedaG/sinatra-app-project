@@ -42,8 +42,11 @@ class AssistantsController < ApplicationController
        if !logged_in?
          redirect '/login'
        else
+         assistant = current_dentist.assistants.find_by(params[:id])
+         #@patient = Patient.find_by_id(params[:id])
+         "an edit assistant form #{current_dentist.id} is editing #{assistant.id}"
          #@patient = current_dentist.patients.find_by(params[:id])
-         @assistant = Assistant.find_by_id(params[:id])
+         #@assistant = Assistant.find_by_id(params[:id])
           erb :'/assistants/edit'
        end
     end
