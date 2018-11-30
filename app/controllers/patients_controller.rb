@@ -46,7 +46,7 @@ class PatientsController < ApplicationController
      else
        #binding.pry
        patient = Patient.find_by_id(params[:id])
-       binding.pry
+       #binding.pry
        if patient = current_dentist.patients.find_by_id(params[:id])
        "an edit patient form #{current_dentist.id} is editing #{patient.id}"
         erb :'/patients/edit'
@@ -81,7 +81,7 @@ class PatientsController < ApplicationController
       patient.delete
       redirect '/patients'
     else
-      redirect to "/patients/#{params[:id]}"
+      redirect to '/patients'
     end
   end
 end

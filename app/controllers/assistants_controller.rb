@@ -19,7 +19,7 @@ class AssistantsController < ApplicationController
       redirect '/login'
     else
       @assistant = Assistant.create(params[:assistant])
-      @assistant.dentist = Dentist.find_or_create_by(params[:dentist])
+      @assistant.dentist_id = current_dentist.id
       @assistant.name = params[:name]
       @assistant.position = params[:position]
       @assistant.skills = params[:skills]
@@ -42,12 +42,13 @@ class AssistantsController < ApplicationController
        if !logged_in?
          redirect '/login'
        else
-         assistant = current_dentist.assistants.find_by(params[:id])
-         #@patient = Patient.find_by_id(params[:id])
+         assistant = Assistant.find_by_id(params[:id])
+         if assistant = current_dentist.assistants.find_by_id(params[:id])
          "an edit assistant form #{current_dentist.id} is editing #{assistant.id}"
-         #@patient = current_dentist.patients.find_by(params[:id])
-         #@assistant = Assistant.find_by_id(params[:id])
           erb :'/assistants/edit'
+         else
+          redirect '/assistants'
+         end
        end
     end
 
@@ -69,12 +70,12 @@ class AssistantsController < ApplicationController
     end
 
     delete '/assistants/:id/delete' do
-      @assistant = Assistant.find_by_id(params[:id])
-      #if @patient = current_dentist.patients.find_by(params[:id])
-        @assistant.delete
+      assistant = Assistant.find_by_id(params[:id])
+      if assistant = current_dentist.assistants.find_by_id(params[:id])
+        assistant.delete
         redirect '/assistants'
-      #else
-      #  redirect to "/patients/#{params[:id]}"
-      #end
+      else
+        redirect to '/assistants'
+      end
     end
   end
