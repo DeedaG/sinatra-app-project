@@ -18,15 +18,12 @@ class PatientsController < ApplicationController
     if !logged_in?
       redirect '/login'
     else
-      @patient = Patient.create(params[:patient])
-      @patient.dentist_id = current_dentist.id
-      #@patient = Patient.new
-      @patient.name = params[:name]
-      @patient.insurance = params[:insurance]
-      @patient.email = params[:email]
-      @patient.history = params[:history]
-      @patient.save
-        redirect "/patients"
+      if params[:name] != ""
+        current_dentist.patients.create(params)
+        redirect '/patients'
+      else
+        redirect "/patients/new"
+      end
     end
   end
 
