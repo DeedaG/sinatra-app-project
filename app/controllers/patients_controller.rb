@@ -19,7 +19,7 @@ class PatientsController < ApplicationController
       redirect '/login'
     else
       @patient = Patient.create(params[:patient])
-      @patient.dentist = Dentist.find_or_create_by(params[:dentist])
+      @patient.dentist_id = current_dentist.id
       #@patient = Patient.new
       @patient.name = params[:name]
       @patient.insurance = params[:insurance]
@@ -44,10 +44,15 @@ class PatientsController < ApplicationController
      if !logged_in?
        redirect '/login'
      else
-       patient = current_dentist.patients.find_by(params[:id])
-       #@patient = Patient.find_by_id(params[:id])
+       #binding.pry
+       patient = Patient.find_by_id(params[:id])
+       binding.pry
+       if patient = current_dentist.patients.find_by_id(params[:id])
        "an edit patient form #{current_dentist.id} is editing #{patient.id}"
         erb :'/patients/edit'
+      else
+        redirect '/patients'
+       end
      end
   end
 
@@ -70,12 +75,13 @@ class PatientsController < ApplicationController
   end
 
   delete '/patients/:id/delete' do
-    @patient = Patient.find_by_id(params[:id])
-    #if @patient = current_dentist.patients.find_by(params[:id])
-      @patient.delete
+    patient = Patient.find_by_id(params[:id])
+    if patient = current_dentist.patients.find_by_id(params[:id])
+      "a delete patient form #{current_dentist.id} is deleting #{patient.id}"
+      patient.delete
       redirect '/patients'
-    #else
-    #  redirect to "/patients/#{params[:id]}"
-    #end
+    else
+      redirect to "/patients/#{params[:id]}"
+    end
   end
 end
