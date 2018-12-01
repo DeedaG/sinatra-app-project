@@ -1,4 +1,9 @@
+require 'sinatra/base'
+require 'rack-flash'
+
 class AssistantsController < ApplicationController
+  enable :sessions
+  use Rack::Flash
 
   get '/assistants' do  #displays all assistants in database
       @dentist = Dentist.find_by(session[:dentist_id])
@@ -44,10 +49,12 @@ class AssistantsController < ApplicationController
        else
          assistant = Assistant.find_by_id(params[:id])
          if assistant = current_dentist.assistants.find_by_id(params[:id])
-         "an edit assistant form #{current_dentist.id} is editing #{assistant.id}"
+           "an edit assistant form #{current_dentist.id} is editing #{assistant.id}"
+         #binding.pry
           erb :'/assistants/edit'
          else
-          redirect '/assistants'
+           flash[:errors] = "You are not authorized to edit this record."
+           redirect '/assistants'
          end
        end
     end
@@ -75,6 +82,7 @@ class AssistantsController < ApplicationController
         assistant.delete
         redirect '/assistants'
       else
+        flash[:errors] = "You are not authorized to delete this record."
         redirect to '/assistants'
       end
     end
