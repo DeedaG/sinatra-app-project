@@ -11,8 +11,9 @@ class DentistController < ApplicationController
     # if @dentist.save
     if params[:email] != "" && params[:password] != ""
       Dentist.create(params)
+      #login(params[:email], params[:password])
       #binding.pry
-      redirect '/patients'
+      redirect '/login'
     else
       erb :'dentists/new'
     end

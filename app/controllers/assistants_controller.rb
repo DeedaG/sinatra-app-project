@@ -1,10 +1,6 @@
-require 'sinatra/base'
-require 'rack-flash'
 
 class AssistantsController < ApplicationController
-  enable :sessions
-  use Rack::Flash
-
+  
   get '/assistants' do  #displays all assistants in database
       @dentist = Dentist.find_by(session[:dentist_id])
       @assistants = Assistant.all
