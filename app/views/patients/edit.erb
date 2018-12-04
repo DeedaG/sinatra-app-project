@@ -1,4 +1,5 @@
-<h1>Edit Patient: <%= @patient%></h1>
+<%patient = Patient.find_by_id(params[:id])%>
+<h1>Edit Patient: <%= patient.name%></h1>
 
 <form action="/patients/<%="#{params[:id]}"%>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="PATCH">

@@ -1,4 +1,5 @@
-<h1>Edit Assistant: <%= @assistant%></h1>
+<%assistant = Assistant.find_by_id(params[:id])%>
+<h1>Edit Assistant: <%= assistant.name%></h1>
 
 <form action="/assistants/<%="#{params[:id]}"%>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
